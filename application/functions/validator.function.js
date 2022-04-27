@@ -10,7 +10,7 @@ class Validator{
     }
 
     static Rule= async (_callBack) =>{
-        const validator = new Validation();
+        const validator = new Validator();
         await  _callBack(validator);
         return validator;
         

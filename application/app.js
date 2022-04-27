@@ -32,7 +32,7 @@ app.use((err, req, res, next) => {
         "Content-Type": "application/json",
         "X-Powered-By": "-"
     });
-    res.status(500).send({"message":err})
+    res.status(err.statusCode).send(err)
 });
 
 require("./routes/main.routes.js")(app);
