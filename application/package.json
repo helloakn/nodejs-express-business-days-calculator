@@ -1,14 +1,16 @@
 {
-  "name": "BusinessDaysAPI",
+  "name": "API",
   "version": "1.0.0",
   "description": "business day calculator api",
   "main": "app.js",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "dotenv": "^16.0.0"
 },
 "exports": {
-  "./config": "./lib/config.js"
+  "./config": "./lib/config.js",
+  "./routeGenerator": "./lib/route-generator.js"
 },
   "scripts": {
     "dev": " node app.js",

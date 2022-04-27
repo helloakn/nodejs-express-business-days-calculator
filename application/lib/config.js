@@ -1,7 +1,11 @@
 require('dotenv').config();
 module.exports = { 
     ServerConfig:{
-        POR:process.env.SVR_PORT || 8080
+        PORT:process.env.PORT || 8080,
+        allowFrom:process.env.allowFrom || "*"
+    },
+    Path:{
+        services: '../'
     },
     StatusCodes:{
         Ok:200,

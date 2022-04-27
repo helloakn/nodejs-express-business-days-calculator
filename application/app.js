@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
-const {ServerConfig} = require('BusinessDaysAPI/config');
+const {ServerConfig} = require('API/config');
 
 const corsOptions = {
     origin: ServerConfig.allowFrom
@@ -36,7 +36,7 @@ app.use((err, req, res, next) => {
 });
 
 require("./routes/main.routes.js")(app);
-
+console.log('ServerConfig.PORT',ServerConfig.PORT)
 app.listen(ServerConfig.PORT, () => {
     console.log(`Server is running on port ${ServerConfig.PORT}.`);
 });
