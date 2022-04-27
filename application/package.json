@@ -1,11 +1,14 @@
 {
-  "name": "holidayapi",
+  "name": "BusinessDaysAPI",
   "version": "1.0.0",
-  "description": "business day calculator",
+  "description": "business day calculator api",
   "main": "app.js",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3"
+},
+"exports": {
+  "./config": "./lib/config.js"
 },
   "scripts": {
     "dev": " node app.js",
