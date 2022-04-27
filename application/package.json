@@ -10,7 +10,8 @@
 },
 "exports": {
   "./config": "./lib/config.js",
-  "./routeGenerator": "./lib/route-generator.js"
+  "./routeGenerator": "./lib/route-generator.js",
+  "./functions/*": "./functions/*.function.js"
 },
   "scripts": {
     "dev": " node app.js",
