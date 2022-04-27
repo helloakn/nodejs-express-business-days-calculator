@@ -17,7 +17,7 @@ class Validator{
     }
 
     validate = ()=>{
-       return Promise.all(this.#promiseList).then((values) => {s
+       return Promise.all(this.#promiseList).then((values) => {
             return Object.keys(this.errors).length==0
         });
     }

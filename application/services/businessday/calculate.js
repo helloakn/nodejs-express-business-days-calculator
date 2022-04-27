@@ -5,11 +5,14 @@ exports.handler = async (event,callback) => {
 
     const formData = event.body;
     console.log('formData',formData);
-    const v = await Validator.Rule(
+    const validator = await Validator.Rule(
         async validator=>{
             validator.input("brand_name",formData.brand_name)
-            .isEmpty("Brand Name should not be empty");
+            .isDate("validate date");
         });
+    let isValidate = await validator.validate();
+    console.log('isValidate',isValidate)
+    console.log('validator',validator)
     return {
         statusCode: StatusCodes.Ok,
         body: {"hello":"world"}
