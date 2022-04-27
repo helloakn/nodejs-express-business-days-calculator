@@ -3,32 +3,41 @@ const {StatusCodes} = require('API/config');
 
 module.exports =  (_app,_serviceList) => {
    
-    middleware =(_authorizer,)=>{
+    middleware =(_authorizer,_serviceName,_functionName)=>{
         return async(req, res, next)=> {
-             req.service = serviceName;
+             
              if(_authorizer==undefined){
-                 console.log('ok')
+                 console.log('ok');
+                 req.serviceName = _serviceName;
+                 req.functionName = _functionName;
                  return next();
              }
              else{
-                res.status(response.statusCode||StatusCodes.ok).send(response.body||{});
+                let status = await _authorizer();
+                if(status.isAuth()){
+                    req.token = status.token;
+                    res.status(response.statusCode||StatusCodes.ok).send(response.body||{});
+                }
+                else{
+                    res.status(StatusCodes.UnAuthorize).send({});
+                }
              }
              
          }
     }
-
-    handler = async (req, res)=>{
-       // console.log(req.body);
-        const serviePath = "../services/"+req.service + ".js";
+    handler = async(req,res)=>{
+        const serviePath = "../services/"+req.serviceName+"/"+req.functionName + ".js";
+        
         const controller = require(serviePath);
+        console.log('serviePath',serviePath)
         const response = await controller.handler(req);
-
+        console.log('response',response)
         res.set(response.headers||{
             "Content-Type": "application/json",
             "X-Powered-By": "sat su tal nor"
         });
 
-        res.status(response.statusCode||StatusCodes.ok).send(response.body||{});
+        return res.status(response.statusCode||StatusCodes.ok).send(response.body||{});
     }
 
     generate = (_app,_serviceList) => {
@@ -36,13 +45,25 @@ module.exports =  (_app,_serviceList) => {
             
             let service = route.service;
             service.functionList.forEach(fun=>{
-                let routePrefix = `/${route.prefix}/${service.name}`;
+                let routePrefix = `/${route.prefix?route.prefix+"/":""}${service.name}`;
                 _app.prefix(routePrefix, function (router) {
                     console.log(routePrefix+"/"+fun.endPoint)
-                    router.route("/"+fun.endPoint).post(
-                        middleware(fun.authorizer),
-                        handler
-                    );
+                    switch(fun.method){
+                        case 'post':
+                            router.route("/"+fun.endPoint).post(
+                                middleware(fun.authorizer,service.name,fun.function),
+                                handler
+                            );
+                            break;
+                        case 'get':
+                            //console.log('service name',service.name+'/'fun.function)
+                            router.route("/"+fun.endPoint).post(
+                                middleware(fun.authorizer,service.name,fun.function),
+                                handler
+                            );
+                            break;
+                    }
+                    
                 });
             });
 

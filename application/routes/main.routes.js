@@ -3,11 +3,11 @@ module.exports = app => {
     
     serviceList.push(
         { 
-            prefix:'businessday',
+            prefix:'api',
             service: require("./bd-calculator.routes.js")
         },
         { 
-            prefix:'health',
+            prefix:'api',
             service: require("./healthcheck.routes.js")
         }
     );

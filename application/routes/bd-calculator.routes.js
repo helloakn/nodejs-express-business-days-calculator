@@ -3,8 +3,8 @@ module.exports = {
     "functionList":[
         {
             "method" : 'post',
-            "endPoint" : "list",
-            "function":"businessDayCalculator",
+            "endPoint" : "calculate",
+            "function":"calculate",
             "authorization" : null,
         }
     ]

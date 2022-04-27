@@ -1,9 +1,13 @@
+const {StatusCodes} = require('API/config');
 module.exports = {
-    "name":"business",
+    "name":"health",
     "functionList":[
         {
-            "endPoint" : "list",
-            "function":"businessDayCalculator",
+            "method": "get",
+            "endPoint" : "check",
+            "function":(res,req,next)=>{
+
+            },
             "authorization" : null
         }
     ]
