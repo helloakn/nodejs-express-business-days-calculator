@@ -20,5 +20,33 @@ module.exports = {
         UnSupportedMediaType:415,
         UpgradeRequired:426,
         TooManyRequests:429
-    }
+    },
+    publicHolidays: [
+        // on : mm/dd
+        {on:"01/01" , name:"New Year", },
+        {on:"01/26" , name:"Australia Day" },
+        {on:"03/08" , name:"Canberra Day"},
+        {on:"04/02" , name:"Good Friday"},
+        {on:"04/03" , name:"Easter Saturday"},
+        {on:"04/04" , name:"Easter Sunday"},
+        {on:"04/05" , name:"Easter Monday"},
+        {on:"04/25" , name:"Anzac Day"},
+        {on:"05/31" , name:"Reconciliation Day"},
+        {on:"10/04" , name:"Labour Day"},
+        {on:"12/25" , name:"Christmas Day"}
+    ],
+    addOn: [
+        // on : mm/dd
+        {on:"01/01" , name:"New Year", },
+        {on:"01/26" , name:"Australia Day" },
+        {on:"03/08" , name:"Canberra Day"},
+        {on:"04/02" , name:"Good Friday"},
+        {on:"04/03" , name:"Easter Saturday"},
+        {on:"04/04" , name:"Easter Sunday"},
+        {on:"04/05" , name:"Easter Monday"},
+        {on:"04/25" , name:"Anzac Day"},
+        {on:"05/31" , name:"Reconciliation Day"},
+        {on:"10/04" , name:"Labour Day"},
+        {on:"12/25" , name:"Christmas Day"}
+    ]
 };

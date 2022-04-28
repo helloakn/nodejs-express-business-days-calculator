@@ -7,7 +7,6 @@ module.exports =  (_app,_serviceList) => {
         return async(req, res, next)=> {
              
              if(_authorizer==undefined){
-                 console.log('ok');
                  req.serviceName = _serviceName;
                  req.functionName = _functionName;
                  return next();
@@ -29,9 +28,7 @@ module.exports =  (_app,_serviceList) => {
         const serviePath = "../services/"+req.serviceName+"/"+req.functionName + ".js";
         
         const controller = require(serviePath);
-        console.log('serviePath',serviePath)
         const response = await controller.handler(req);
-        console.log('response',response)
         res.set(response.headers||{
             "Content-Type": "application/json",
             "X-Powered-By": "sat su tal nor"
@@ -47,7 +44,7 @@ module.exports =  (_app,_serviceList) => {
             service.functionList.forEach(fun=>{
                 let routePrefix = `/${route.prefix?route.prefix+"/":""}${service.name}`;
                 _app.prefix(routePrefix, function (router) {
-                    console.log(routePrefix+"/"+fun.endPoint)
+                    //console.log(routePrefix+"/"+fun.endPoint)
                     switch(fun.method){
                         case 'post':
                             router.route("/"+fun.endPoint).post(
@@ -68,20 +65,6 @@ module.exports =  (_app,_serviceList) => {
             });
 
         });
-        // _serviceList.forEach((service)=>{
-        //     _app.prefix(`/${service}/${service.name}`, function (router) {
-        
-        //       service.functions.forEach((funObj)=>{
-        
-        //         router.route("/"+funObj.endPoint).post(
-        //           middleware(funObj.authorizer),
-        //           BridgeController.handler
-        //         );
-        
-        //       }); // end endPoint
-        
-        //     });//end prefix
-        // });
     }
   
     generate(_app,_serviceList);

@@ -7,7 +7,7 @@ module.exports = app => {
             service: require("./bd-calculator.routes.js")
         },
         { 
-            prefix:'api',
+            prefix:'',
             service: require("./healthcheck.routes.js")
         }
     );
