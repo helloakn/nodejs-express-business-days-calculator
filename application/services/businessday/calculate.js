@@ -42,47 +42,31 @@ exports.handler = async (event,callback) => {
         let diff = DF.dateDiff(formData.end_date,formData.start_date);
         let bdCount = 0;
         let minutes = 0;
-        let  tf = false;
-        for(i = -1; i<diff;i++){
-            console.log('- - - - - - - - - -')
+        for(i = -2; i<diff;i++){
+
             bdCount++;
-            if(bdCount<3){
-                console.log('bdcount<3',bdCount)
-                console.log('i',i);
-                let current = DF.addDay(formData.start_date,i);
-                console.log('bdcount<3 current',current)
-                if(DF.isPublicHoliday(current)){
-                    console.log('yes')
-                    minutes += DF.isWeekend(current) ? -2 : -1;
-                }
-                else if(DF.isWeekend(current)){
-                    minutes=minutes-1;
-                    console.log('bdcount<3 ',bdCount,minutes)
-                }
-                else{
-                    minutes--;
-                }
-                
-                console.log('bdcount<3 minutes ',minutes)
+           
+            let day = DF.addDay(formData.start_date,i);
+            let isWeekend = DF.isWeekend(day);
+            
+            if(bdCount<=3){
+                minutes ++;
             }
             else{
-                let current = DF.addDay(formData.start_date,i);
-                if(DF.isPublicHoliday(current)){
-                    minutes += DF.isWeekend(current) ? -2 : -1;
-                    tf = true;
-                }
-                else if(DF.isWeekend(current)){
-                    minutes--
+                if(isWeekend){
+                    minutes++;
                 }
             }
             
+            if(DF.isPublicHoliday(day)){
+                minutes++;
+            }
+            
         }
-        console.log('bdcoun end',bdCount)
-        console.log('minutes end',minutes)
-        bdCount = bdCount - 2;
+       
         return {
             statusCode: isValidate?StatusCodes.Ok:StatusCodes.BadRequest,
-            body: isValidate?{"number_of_working_days:":(bdCount+minutes)}:validator.errors
+            body: isValidate?{"number_of_working_days:":(bdCount-minutes)}:validator.errors
         };
 
     }

@@ -35,7 +35,7 @@ module.exports = {
         {on:"10/04" , name:"Labour Day"},
         {on:"12/25" , name:"Christmas Day"}
     ],
-    addOn: [
+    addOnHolidays: [
         // on : mm/dd
         {on:"01/01" , name:"New Year", },
         {on:"01/26" , name:"Australia Day" },

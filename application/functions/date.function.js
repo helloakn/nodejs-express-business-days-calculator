@@ -31,7 +31,6 @@ const DateFunctions = {
             //console.log('_d.getFullYear()',_d.getFullYear())
             let tmpHoliday = holiday.on + "/" + _d.getFullYear();
             let h = new Date(tmpHoliday);
-           // console.log('is equal ',h.getTime(),_d.getTime())
             if(!tf){
                 tf = h.getTime() === _d.getTime();
             }
