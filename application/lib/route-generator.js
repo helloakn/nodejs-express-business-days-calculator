@@ -25,10 +25,20 @@ module.exports =  (_app,_serviceList) => {
          }
     }
     handler = async(req,res)=>{
-        const serviePath = "../services/"+req.serviceName+"/"+req.functionName + ".js";
+        let response;
         
-        const controller = require(serviePath);
-        const response = await controller.handler(req);
+
+        
+        if(typeof(req.functionName) === 'function'){
+            response = await req.functionName();
+        }
+        else{
+            const serviePath = "../services/"+req.serviceName+"/"+req.functionName + ".js";
+        
+            const controller = require(serviePath);
+            response = await controller.handler(req);
+            
+        }
         res.set(response.headers||{
             "Content-Type": "application/json",
             "X-Powered-By": "sat su tal nor"

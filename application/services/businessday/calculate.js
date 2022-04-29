@@ -72,6 +72,6 @@ exports.handler = async (event,callback) => {
     }
     return {
         statusCode: isValidate?StatusCodes.Ok:StatusCodes.BadRequest,
-        body: isValidate?{"number_of_working_days:":12}:validator.errors
+        body: {"errors":validator.errors}
     };
 }

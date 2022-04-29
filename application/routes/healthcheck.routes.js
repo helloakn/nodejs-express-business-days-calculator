@@ -6,7 +6,10 @@ module.exports = {
             "method": "get",
             "endPoint" : "check",
             "function":(res,req,next)=>{
-
+                return {
+                    statusCode: StatusCodes.Ok,
+                    body:{}
+                }
             },
             "authorization" : null
         }

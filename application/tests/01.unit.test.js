@@ -8,7 +8,8 @@ const {
     isValidDate,
     dateDiff,
     getDayNumber,
-    isPublicHoliday
+    isPublicHoliday,
+    isWeekend
 } = DF;
 //end for unit Testing
 
@@ -97,14 +98,21 @@ describe("Unit Testing", () => {
             });
         });
 
+        describe("isWeekend : Checking weekend days", () => {
+            test(`if weekend must be true, or false`, () => {
+                expect(isWeekend('07/01/2022')).toBe(false);
+                expect(isWeekend('07/02/2022')).toBe(true);
+                expect(isWeekend('07/03/2022')).toBe(true);
+                expect(isWeekend('07/04/2022')).toBe(false);
+                expect(isWeekend('07/05/2022')).toBe(false);
+                expect(isWeekend('07/06/2022')).toBe(false);
+                expect(isWeekend('07/07/2022')).toBe(false);
+                expect(isWeekend('07/08/2022')).toBe(false);
+                expect(isWeekend('07/09/2022')).toBe(true);
+                
+
+            });
+        });
+
     });
 });
-// describe("API Testing", () => {
-//     test("should respond with a 200 status code", async () => {
-//         const response = await request(app).post("/api/businessday/calculate").send({
-//             start_date: "07/01/2022",
-//             end_date: "07/31/2022"
-//         })
-//         expect(response.statusCode).toBe(200)
-//     })
-// });
