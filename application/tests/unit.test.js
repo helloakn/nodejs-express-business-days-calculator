@@ -83,13 +83,18 @@ describe("Unit Testing", () => {
                     test(`${holiday.name} must be true on Random Year ${y}`, () => {
                         expect(isPublicHoliday(`${holiday.on}/${y}`)).toBe(true);
                     });
+                });
+            });
+        });
+        describe("isPublicHoliday : Must Be False For any years on second december (12/02/yyyy)", () => {
+            let random_years = [2019,2016,2018,2022,2025];
+            random_years.forEach(y=>{
+                publicHolidays.forEach(holiday=>{
                     test(`holiday check 12/02 (second december) must be false on Random Year ${y}`, () => {
                         expect(isPublicHoliday(`12/02/${y}`)).toBe(false);
                     });
                 });
             });
-            
-            
         });
 
     });
