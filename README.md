@@ -41,4 +41,4 @@ cd application
 npm test
 cd ../
 ```
-![alt text](resource/unit.test.ss.png)
+![alt text](documentations/unit.test.ss.png)
