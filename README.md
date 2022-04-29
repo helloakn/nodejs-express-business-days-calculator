@@ -1,11 +1,15 @@
 # Business Days Calculator
-This for codding test app.
+This  is for codding test app. base on Australia calendar.
 
 [![NodeJs](https://img.shields.io/badge/nodejs-v16.14.2-green)](https://github.com/helloakn/nodejs-express-business-days-calculator) 
 [![Express](https://img.shields.io/badge/express-v^4.17.3-green)](https://github.com/helloakn/nodejs-express-business-days-calculator) 
 
 ## Table of Contents
-hello
+- File Structure
+- Installation
+- Run
+- Test
+
 ### File Structure
 ```nth
 .
@@ -14,7 +18,26 @@ hello
 │   ├── lib                     # just for system configuration files
 │   ├── routes                  # End-to-end, integration tests (alternatively `e2e`)
 │   └── services                # Controllers , we can deploy them to AWS Lambda functions
+│   └── tests                   # unit test and api test
 ├── documentations              # for documentations resources
 ├── README.md              
 └── ...
+```
+### Installation
+```shell
+cd application
+npm install
+cd ../
+```
+## Run
+```shell
+cd application
+npm run dev
+cd ../
+```
+## Test
+```shell
+cd application
+npm test
+cd ../
 ```
