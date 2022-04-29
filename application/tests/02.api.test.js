@@ -85,7 +85,65 @@ describe("API Testing", () => {
                     }
                 },done
             )
-            
+            //.expect(400,done)
+        }); // end it
+
+        it('Test validation for invalid leap year', 
+        function(done) {
+            request(server).post("/api/businessday/calculate").send({
+                start_date: "02/30/2016",
+                end_date: "07/31/2022"
+            })
+            .expect('Content-Type', /json/)
+            .expect(400,
+                {
+                    errors: {
+                        start_date: [
+                            "Start Date is incorrect, Please careful the leap years too"
+                        ]
+                    }
+                },done
+            )
+            //.expect(400,done)
+        }); // end it
+        it('Test validation for valid leap year', 
+        function(done) {
+            request(server).post("/api/businessday/calculate").send({
+                start_date: "02/29/2016",
+                end_date: "07/31/2022"
+            })
+            .expect('Content-Type', /json/)
+            .expect(200,done)
+            //.expect(400,done)
+        }); // end it
+
+        it('test started date is replacement', 
+        function(done) {
+            request(server).post("/api/businessday/calculate").send({
+                start_date: "01/03/2022",
+                end_date: "01/31/2022"
+            })
+            .expect('Content-Type', /json/)
+            .expect(200,
+                {
+                    "number_of_working_days:": 17
+                },done
+            )
+            //.expect(400,done)
+        }); // end it
+
+        it('test started date is not replacement', 
+        function(done) {
+            request(server).post("/api/businessday/calculate").send({
+                start_date: "01/05/2022",
+                end_date: "01/31/2022"
+            })
+            .expect('Content-Type', /json/)
+            .expect(200,
+                {
+                    "number_of_working_days:": 16
+                },done
+            )
             //.expect(400,done)
         }); // end it
     });
