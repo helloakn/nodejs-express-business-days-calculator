@@ -36,7 +36,5 @@ app.use((err, req, res, next) => {
 });
 
 require("./routes/main.routes.js")(app);
-console.log('ServerConfig.PORT',ServerConfig.PORT)
-app.listen(ServerConfig.PORT, () => {
-    console.log(`Server is running on port ${ServerConfig.PORT}.`);
-});
+
+module.exports = app;

@@ -1,23 +1,52 @@
 {
   "name": "API",
   "version": "1.0.0",
-  "description": "business day calculator api",
+  "description": "business days calculator api",
   "main": "app.js",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.3",
-    "dotenv": "^16.0.0"
-},
-"exports": {
-  "./config": "./lib/config.js",
-  "./routeGenerator": "./lib/route-generator.js",
-  "./functions/*": "./functions/*.function.js"
-},
-  "scripts": {
-    "dev": " node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3"
   },
-  "keywords": ["business day calculator"],
+  "exports": {
+    "./config": "./lib/config.js",
+    "./routeGenerator": "./lib/route-generator.js",
+    "./functions/*": "./functions/*.function.js"
+  },
+  "scripts": {
+    "dev": " node server.js",
+    "test": "jest",
+    "test-watch": "npm run test -- --watch"
+  },
+  "keywords": [
+    "business day calculator"
+  ],
   "author": "Aung Kyaw Nyunt",
-  "license": "ISC"
+  "license": "ISC",
+  "jest": {
+    "verbose": true,
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.ts?$": "ts-jest"
+    },
+    "transformIgnorePatterns": ["./node_modules/"],
+    "moduleFileExtensions": ["js", "json", "es6"],
+    "moduleNameMapper": {
+      "./config": "<rootDir>/lib/config.js",
+      "./routeGenerator": "<rootDir>/lib/route-generator.js",
+      "^API/functions/(.+)$": "<rootDir>/functions/$1.function.js",
+      "^API/Testing/(.+)$": "<rootDir>/_test_/$1.test.js"
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.29",
+    "@types/supertest": "^2.0.12",
+    "jest": "^27.5.1",
+    "supertest": "^6.2.3",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  }
 }
