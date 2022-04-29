@@ -17,14 +17,14 @@ describe("Unit Testing", () => {
 
     let start_date;
     let end_date;
-    let random_years;
+    
 
     beforeAll(done => {
 
         start_date = "07/01/2022";
         end_date = "07/31/2022";
 
-        random_years = [2019,2016,2018,2022,2025];
+        
 
         server = app.listen(ServerConfig.PORT, () => {
             console.log(`Server is running on port ${ServerConfig.PORT}.`);
@@ -77,11 +77,14 @@ describe("Unit Testing", () => {
         });
 
         describe("isPublicHoliday : Must Be True For any years ", () => {
-            console.log('random_years',random_years);
+            let random_years = [2019,2016,2018,2022,2025];
             random_years.forEach(y=>{
                 publicHolidays.forEach(holiday=>{
-                    test(`${holiday.name} must be true`, () => {
+                    test(`${holiday.name} must be true on Random Year ${y}`, () => {
                         expect(isPublicHoliday(`${holiday.on}/${y}`)).toBe(true);
+                    });
+                    test(`holiday check 12/02 (second december) must be false on Random Year ${y}`, () => {
+                        expect(isPublicHoliday(`12/02/${y}`)).toBe(false);
                     });
                 });
             });

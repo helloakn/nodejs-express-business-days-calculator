@@ -16,7 +16,7 @@ This  is for codding test app. base on Australia calendar.
 ├── application                 # nodejs source code
 │   └── functions               # for the common functions
 │   ├── lib                     # just for system configuration files
-│   ├── routes                  # End-to-end, integration tests (alternatively `e2e`)
+│   ├── routes                  # urls and prefixs
 │   └── services                # Controllers , we can deploy them to AWS Lambda functions
 │   └── tests                   # unit test and api test
 ├── documentations              # for documentations resources
